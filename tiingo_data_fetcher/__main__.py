@@ -1,10 +1,9 @@
 import logging
-from decimal import Decimal
 
 import mysql.connector
 
-from backtester.single_allocation_strategy import SingleAllocationStrategy
 from configuration import read_config
+from tiingo_data_fetcher.data_fetcher import TiingoDataFetcher
 
 LOGGER = logging.getLogger(__name__)
 
@@ -19,4 +18,4 @@ if __name__ == "__main__":
         database=config["mysql"]["database"],
         charset="utf8",
     )
-    SingleAllocationStrategy(ticker="SSO", initial_amount=Decimal("10000"), conn=conn).run()
+    TiingoDataFetcher(conn=conn, config=config).fetch(tickers=["TMF"])

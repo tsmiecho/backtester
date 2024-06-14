@@ -2,5 +2,8 @@ SHELL := /bin/bash
 
 checks:
 	black .
-	ruff check . --fix
 	mypy .
+	ruff check . --fix
+
+black:
+	black .

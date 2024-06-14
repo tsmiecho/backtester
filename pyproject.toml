@@ -1,5 +1,5 @@
 [tool.ruff]
-line-length = 180
+line-length = 130
 target-version = "py312"
 
 [tool.ruff.format]
@@ -8,15 +8,26 @@ line-ending = "lf"
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = [
+    "ANN101", # Missing type annotation for `self` in method
+    "ANN401", # Dynamically typed expressions (typing.Any) are disallowed
+    "D101", # Missing docstring in public class
+    "D102", # Missing docstring in public method
+    "D103", # Missing docstring in public function
+    "D107", # Missing docstring in __init__
     "D100", # Missing docstring in public module
     "D104", # Missing docstring in public package
+    "FBT001", # Boolean positional arg in function call
+    "FBT002", # Boolean default positional argument in function definition
+    "G004", # Logging statement uses f-string
+    "PD901", # Avoid using the generic variable name `df` for DataFrames
+    "PTH123", # `open()` should be replaced by `Path.open()`
 ]
 
 [tool.ruff.lint.isort]
 case-sensitive = true
 
 [tool.black]
-line-length = 180
+line-length = 130
 target-version = ["py312"]
 
 [tool.mypy]
