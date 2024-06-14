@@ -1,0 +1,23 @@
+[tool.ruff]
+line-length = 180
+target-version = "py312"
+
+[tool.ruff.format]
+line-ending = "lf"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "D100", # Missing docstring in public module
+    "D104", # Missing docstring in public package
+]
+
+[tool.ruff.lint.isort]
+case-sensitive = true
+
+[tool.black]
+line-length = 180
+target-version = ["py312"]
+
+[tool.mypy]
+python_version = "3.12"
