@@ -18,4 +18,5 @@ if __name__ == "__main__":
         database=config["mysql"]["database"],
         charset="utf8",
     )
-    TiingoDataFetcher(conn=conn, config=config).fetch(tickers=["TMF"])
+
+    TiingoDataFetcher(conn=conn, config=config).fetch(tickers=config["fetcher"]["tickers"])
