@@ -8,8 +8,8 @@ from tiingo_data_fetcher.data_fetcher import TiingoDataFetcher
 LOGGER = logging.getLogger(__name__)
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
     config = read_config("../config/config.yaml")
+    logging.basicConfig(level=config["log_level"])
     conn = mysql.connector.connect(
         user=config["mysql"]["user"],
         password=config["mysql"]["password"],

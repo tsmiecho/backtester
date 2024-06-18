@@ -1,4 +1,3 @@
-import datetime as dt
 from decimal import Decimal
 
 import numpy as np
@@ -7,14 +6,6 @@ from pandas import DataFrame
 
 
 class StrategyFactorsCalculator:
-    @staticmethod
-    def calculate_simulation_period(df: DataFrame) -> tuple[Decimal, dt.date]:
-        start_date = df["date"][0]
-        end_date = df["date"][df["date"].size - 1]
-        simulation_time_in_years = Decimal(
-            str(round((end_date - start_date) / dt.timedelta(365, 5, 49, 12), 2)),
-        )
-        return simulation_time_in_years, start_date
 
     @staticmethod
     def calculate_cagr(initial_amount: Decimal, simulation_time_in_years: Decimal, ending_value: Decimal) -> Decimal:

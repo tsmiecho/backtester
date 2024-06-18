@@ -1,3 +1,4 @@
+import datetime as dt
 import logging
 from decimal import Decimal
 from typing import Any
@@ -25,7 +26,7 @@ class SingleAllocationStrategy:
 
     def run(self) -> DataFrame:
         df = self._fetch_dataframe()
-        simulation_time_in_years, start_date = StrategyFactorsCalculator.calculate_simulation_period(df)
+        simulation_time_in_years, start_date = self._calculate_simulation_period(df)
         initial_stocks_count, initial_cash = divmod(self._initial_amount, Decimal(df["close_price"][0]))
 
         LOGGER.info(f"Ticker: {self._ticker}")
@@ -77,3 +78,11 @@ class SingleAllocationStrategy:
         df["portfolio_value"] = pd.to_numeric(df["portfolio_value"])
         last_price = Decimal(str(df["close_price"][df["close_price"].size - 1]))
         return stocks_count * last_price + cash
+
+    def _calculate_simulation_period(self, df: DataFrame) -> tuple[Decimal, dt.date]:
+        start_date = df["date"][0]
+        end_date = df["date"][df["date"].size - 1]
+        simulation_time_in_years = Decimal(
+            str(round((end_date - start_date) / dt.timedelta(365, 5, 49, 12), 2)),
+        )
+        return simulation_time_in_years, start_date
