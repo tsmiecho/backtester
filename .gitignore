@@ -125,3 +125,4 @@ dmypy.json
 .DS_Store
 .idea/
 /config/config.yaml
+/data/
